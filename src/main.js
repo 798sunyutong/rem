@@ -3,8 +3,10 @@
 import Vue from 'vue'
 import App from './App'
 import router from './router'
+import SIdentify from './pages/login/identify'
 
 Vue.config.productionTip = false
+Vue.use(SIdentify)
 
 /* eslint-disable no-new */
 new Vue({

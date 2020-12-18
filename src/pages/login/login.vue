@@ -6,18 +6,16 @@
         </div>
         <input placeholder="账号" class="num">
         <input placeholder="密码" class="num">
-       <div class="yzm">
-            <input placeholder="验证码 单击图片刷新" class="yzmnum">
-            <img src="./image/yzm.jpg" class="yzmimg">
-       </div>
+        <input placeholder="验证码 单击图片刷新" class="yzmnum">
+        <s-identify :identifyCode="identifyCode"></s-identify>
         <div class="bottom">
             <div class="cz">重置</div>
             <div class="dl">登陆</div>
         </div>
-        <div id="app">
+        <!-- <div id="app"  @click="fff()">
             <input v-model="date">
 			{{date}}
-		</div>
+		</div> -->
     </div>
   
 </template>
@@ -25,14 +23,22 @@
 <script>
 export default {
     name:'login',
-    
-   data() {
+    data() {
        return {
-           date:new Date(new Date()-0 + 6*24*60*60*1000)
+        //    date:new Date(new Date()-0 + 6*24*60*60*1000)，获取当前日期的6天后
+        identifyCode:'',
+        identifyCodes:'0123456789'
        }
+       
+   },
+   mounted(){
+       this.identifyCode=''
+    //    this.makecode=(this.identifyCodes,4)//四位数的验证码
    },
    methods: {
-       
+    //   fff(){
+    //     console.log("%cparams","color:yellow",this.date)带颜色的console.log()
+    //   } 
    },
 
 }
@@ -64,20 +70,6 @@ export default {
         width 300px
         height 40px
         margin 10px
-    .yzm
-        width 300px
-        height 40px
-        margin 10px 45px
-        .yzmnum
-            height 40px
-            line-height 40px
-            width 150px
-            float left
-        .yzmimg
-            height 40px
-            line-height 40px
-            width 100px
-            float right 
     .bottom
         width 300px
         height 40px
@@ -101,4 +93,10 @@ export default {
             display inline-block
             background-color #1A6BE6
             border-radius 4px
+    .yzmnum
+        height 40px
+        line-height 40px
+        width 150px 
+        float left
+        margin 20px 45px
 </style>
