@@ -4,14 +4,14 @@
             <div class="header">系统登陆</div>
             <div class="icon">v</div>
         </div>
-        <input placeholder="账号" class="num">
-        <input placeholder="密码" class="num">
-        <input placeholder="验证码 单击图片刷新" class="yzmnum">
+        <input placeholder="账号" class="num" v-model="account">
+        <input placeholder="密码" class="num" v-model="password">
+        <input placeholder="验证码 单击图片刷新" class="yzmnum" v-model="authcode">
         <div class="code" @click="refreshCode()">
             <SIdentify :identifyCode="identifyCode"></SIdentify>
         </div>
         <div class="bottom">
-            <div class="cz">重置</div>
+            <div class="cz" @click="ferstclear()">重置</div>
             <div class="dl">登陆</div>
         </div>
         <!-- <div id="app"  @click="fff()">
@@ -31,7 +31,10 @@ export default {
         return {
             //    date:new Date(new Date()-0 + 6*24*60*60*1000)，获取当前日期的6天后
             identifyCodes: "1234567890",
-            identifyCode: ""
+            identifyCode: "",
+            account:'',
+            password:'',
+            authcode:'',
         }
         
     },
@@ -58,7 +61,12 @@ export default {
         ];
       }
       console.log(this.identifyCode);
-    }
+    },
+    ferstclear(){
+        this.authcode = ''
+        this.password=''
+        this.account=''
+    },
   }
 }
 </script>
