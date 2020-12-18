@@ -143,7 +143,7 @@ export default {
             }
         },
         //绘制干扰点
-        drawLine(ctx){
+        drawDot(ctx){
             for(let i=0;i<this.identifyCode.length;i++){
                 this.fillStyle(this.randomcolor(1,255))//填充颜色
                 ctx.beginPath()//开始一条路径

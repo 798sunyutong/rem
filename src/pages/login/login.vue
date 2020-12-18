@@ -7,7 +7,7 @@
         <input placeholder="账号" class="num">
         <input placeholder="密码" class="num">
         <input placeholder="验证码 单击图片刷新" class="yzmnum">
-        <s-identify :identifyCode="identifyCode"></s-identify>
+        <SIdentify :identifyCode="identifyCode"></SIdentify>
         <div class="bottom">
             <div class="cz">重置</div>
             <div class="dl">登陆</div>
@@ -21,8 +21,10 @@
 </template>
 
 <script>
+import SIdentify from './identify'
 export default {
     name:'login',
+    components:{SIdentify:SIdentify},
     data() {
        return {
         //    date:new Date(new Date()-0 + 6*24*60*60*1000)，获取当前日期的6天后
