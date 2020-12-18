@@ -7,7 +7,9 @@
         <input placeholder="账号" class="num">
         <input placeholder="密码" class="num">
         <input placeholder="验证码 单击图片刷新" class="yzmnum">
-        <SIdentify :identifyCode="identifyCode"></SIdentify>
+        <div class="code" @click="refreshCode()">
+            <SIdentify :identifyCode="identifyCode"></SIdentify>
+        </div>
         <div class="bottom">
             <div class="cz">重置</div>
             <div class="dl">登陆</div>
@@ -26,23 +28,38 @@ export default {
     name:'login',
     components:{SIdentify:SIdentify},
     data() {
-       return {
-        //    date:new Date(new Date()-0 + 6*24*60*60*1000)，获取当前日期的6天后
-        identifyCode:'',
-        identifyCodes:'0123456789'
-       }
-       
-   },
-   mounted(){
-       this.identifyCode=''
-    //    this.makecode=(this.identifyCodes,4)//四位数的验证码
-   },
-   methods: {
+        return {
+            //    date:new Date(new Date()-0 + 6*24*60*60*1000)，获取当前日期的6天后
+            identifyCodes: "1234567890",
+            identifyCode: ""
+        }
+        
+    },
+    mounted() {
+            this.identifyCode = "";
+            this.makeCode(this.identifyCodes, 4);//四位数的验证码
+        },  
+    methods: {
     //   fff(){
     //     console.log("%cparams","color:yellow",this.date)带颜色的console.log()
     //   } 
-   },
-
+        //生成一个随机数
+        randomNum(min, max) {
+      return Math.floor(Math.random() * (max - min) + min);
+    },
+    refreshCode() {
+      this.identifyCode = "";
+      this.makeCode(this.identifyCodes, 4);
+    },
+    makeCode(o, l) {
+      for (let i = 0; i < l; i++) {
+        this.identifyCode += this.identifyCodes[
+          this.randomNum(0, this.identifyCodes.length)
+        ];
+      }
+      console.log(this.identifyCode);
+    }
+  }
 }
 </script>
 
@@ -100,5 +117,16 @@ export default {
         line-height 40px
         width 150px 
         float left
-        margin 20px 45px
+        margin 20px 25px 20px 45px
+        // margin: 400px auto;
+        // width: 114px;
+        // height: 40px;
+        border 1px solid red;
+    .code
+        margin 20px 0px
+        width 114px
+        height 40px
+        margin-right 45px
+        border 1px solid red
+        display inline-block
 </style>
