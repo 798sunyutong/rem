@@ -21,12 +21,12 @@ export default {
          // 字体最小值
         fontSizeMin: {
             type: Number,
-            default: 16
+            default: 24
         },       
          // 字体最大值
         fontSizeMax:{
             type:Number,
-            default:40
+            default:32
         },
          // 验证码图片背景色最小值
         backgroundColorMin: {
@@ -56,7 +56,7 @@ export default {
         //干扰线颜色最大值
         lineColorMax: {
             type: Number,
-            default: 180
+            default: 100
         },
         // 背景干扰点最小值
         dotColorMin: {
@@ -66,7 +66,7 @@ export default {
         // 背景干扰点最大值
         dotColorMax: {
             type: Number,
-            default: 255
+            default: 100
         },
          //容器宽度
         contentWidth: {
