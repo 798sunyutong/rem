@@ -4,7 +4,7 @@
             <div class="header">系统登陆</div>
             <div class="icon">v</div>
         </div>
-        <input placeholder="账号" class="num" v-model="account">
+        <input placeholder="账号" class="num" v-model="account" @blur="accountblur()">
         <input placeholder="密码" class="num" v-model="password">
         <input placeholder="验证码 单击图片刷新" class="yzmnum" v-model="authcode">
         <div class="code" @click="refreshCode()">
@@ -46,26 +46,42 @@ export default {
     //   fff(){
     //     console.log("%cparams","color:yellow",this.date)带颜色的console.log()
     //   } 
-        //生成一个随机数
+        //生成一个随机数，用在验证码四位数的随机生成
         randomNum(min, max) {
       return Math.floor(Math.random() * (max - min) + min);
     },
+    //点击图片刷新验证码
     refreshCode() {
       this.identifyCode = "";
-      this.makeCode(this.identifyCodes, 4);
+      this.makeCode(this.identifyCodes, 4);//与makeCode(o, l)一一对应o=this.identifyCodes,l=4
     },
-    makeCode(o, l) {
-      for (let i = 0; i < l; i++) {
-        this.identifyCode += this.identifyCodes[
+    //用来生成四位随机数
+     makeCode(o, l) {//o指this.identifyCodes，l不是数字1 ，是L。
+      for (let i = 0; i < l; i++) {//l不是数字1 ，是L。L参数的值为数字4
+        this.identifyCode += this.identifyCodes[//+=生成四个数
           this.randomNum(0, this.identifyCodes.length)
         ];
       }
       console.log(this.identifyCode);
     },
+    //重置按钮清空
     ferstclear(){
         this.authcode = ''
         this.password=''
         this.account=''
+    },
+    //账号校验
+    accountblur(){
+        //帐号是否合法(字母开头，允许5-16字节，允许字母数字下划线)：
+        var reg=/^[a-zA-Z][a-zA-Z0-9_]{4,15}$/
+        var _that = this
+        if(this.account ==''|| this.account == undefined ){
+            this.$toast("账号格式为字母开头，5-16个字符，允许字母数字下划线")
+        }else if(!reg.test(this.account)){
+            this.$toast("账号格式为字母开头，5-16个字符，允许字母数字下划线")
+        }else{
+            
+        }  
     },
   }
 }

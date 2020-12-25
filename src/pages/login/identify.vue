@@ -82,7 +82,7 @@ export default {
     },
     methods: {
         
-        //生成一个随机数
+        //生成一个随机数，主要用在随机数的字体大小，颜色，干扰线、干扰点的大小，粗子，颜色。
         randomNum (min, max) {
             return Math.floor(Math.random() * (max - min) + min)
         },
