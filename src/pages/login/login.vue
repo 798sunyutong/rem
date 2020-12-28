@@ -5,8 +5,8 @@
             <div class="icon">v</div>
         </div>
         <input placeholder="账号" class="num" v-model="account" @blur="accountblur()">
-        <input placeholder="密码" class="num" v-model="password">
-        <input placeholder="验证码 单击图片刷新" class="yzmnum" v-model="authcode">
+        <input placeholder="密码" class="num" v-model="password" @blur="passwordblur()">
+        <input placeholder="验证码 单击图片刷新" class="yzmnum" v-model="authcode" @blur="authcodeblur()">
         <div class="code" @click="refreshCode()">
             <SIdentify :identifyCode="identifyCode"></SIdentify>
         </div>
@@ -79,10 +79,28 @@ export default {
             this.$toast("账号格式为字母开头，5-16个字符，允许字母数字下划线")
         }else if(!reg.test(this.account)){
             this.$toast("账号格式为字母开头，5-16个字符，允许字母数字下划线")
-        }else{
-            
-        }  
+        }
     },
+    //手机号校验
+    passwordblur(){
+        //密码包含 数字,英文,字符中的两种以上，长度6-20
+        var reg=/^$^(?![0-9]+$)(?![a-z]+$)(?![A-Z]+$)(?!([^(0-9a-zA-Z)])+$).{6,20}$/
+        var _this=this
+        if(this.password=="" || this.password==undefined){
+            this.$toast('密码包含 数字,英文,字符中的两种以上，长度6-20')
+        }else if(!reg.test(this.password)){
+            this.$toast('密码包含 数字,英文,字符中的两种以上，长度6-20')
+        }
+    },
+    //验证码是否正确
+    authcodeblur(){
+        console.log("%cparams","color:red", this.authcode)
+        if(this.authcode!=this.identifyCode || this.authcode=='' || this.authcode==undefined){
+            this.authcode=''
+            this.$toast('请正确输入的验证码')
+        }
+    },
+    
   }
 }
 </script>

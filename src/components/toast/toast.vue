@@ -25,10 +25,10 @@ export default {
     color red
     position fixed
     top 40%
-    left 50%
+    left 40%
     padding 15px
     min-width 300px
-    font-size 28px
+    font-size 18px
     text-align center
     background-color rgba(0,0,0,0.8)
     border-radius 8px
