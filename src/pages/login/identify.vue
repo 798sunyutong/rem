@@ -133,7 +133,7 @@ export default {
         },    
         //绘制干扰线
         drawLine (ctx) {
-            for (let i = 0; i < 8; i++) {
+            for (let i = 0; i < 4; i++) {
             ctx.strokeStyle = this.randomColor(this.lineColorMin, this.lineColorMax)//绘制路径颜色
             ctx.beginPath()//开始一条路径
             ctx.moveTo(this.randomNum(0, this.contentWidth), this.randomNum(0, this.contentHeight))//移动到位置
@@ -143,7 +143,7 @@ export default {
         },
         //绘制干扰点
         drawDot (ctx) {
-            for (let i = 0; i < 100; i++) {
+            for (let i = 0; i < 50; i++) {
                 ctx.fillStyle = this.randomColor(0, 255)//填充颜色
                 ctx.beginPath()//开始一条路径
                 //arc(x,y,半径r,起始角，结束角) 方法创建弧/曲线（用于创建圆或部分圆）。如需通过 arc() 来创建圆，请把起始角设置为 0，结束角设置为 2*Math.PI。
